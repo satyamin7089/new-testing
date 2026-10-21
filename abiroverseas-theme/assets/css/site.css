@@ -311,7 +311,8 @@
 .ab-nav-menu>li.ab-nav-quote>a:hover { background:#dd6e13; color:#fff; }
 
 @media (max-width:1100px) {
-  .ab-wrap,.ab-footer .ab-wrap { width:min(1240px,calc(100% - 42px)); }
+  :root { --ab-nav-h:72px; }
+  .ab-wrap { width:min(1240px,calc(100% - 42px)); }
   .ab-nav-inner { gap:17px; }
   .ab-logo-slot { width:160px; height:48px; }
   .ab-nav-menu { gap:14px; }
@@ -332,7 +333,8 @@
   .ab-nav-menu>li.ab-nav-quote>a { display:flex; width:100%; min-height:48px; padding:12px 16px; }
 }
 @media (max-width:600px) {
-  .ab-wrap,.ab-footer .ab-wrap { width:calc(100% - 36px); }
+  :root { --ab-nav-h:66px; }
+  .ab-wrap { width:calc(100% - 36px); }
   .ab-topbar { font-size:12px; }
   .ab-topbar-inner { min-height:0; flex-direction:column; align-items:stretch; gap:5px; padding-top:6px; padding-bottom:7px; }
   .ab-contact-line { width:100%; justify-content:space-between; gap:10px; }
