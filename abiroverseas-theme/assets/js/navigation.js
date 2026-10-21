@@ -14,6 +14,7 @@
     });
   };
   const closeMenu = () => {
+    nav.style.removeProperty('display');
     nav.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', 'false');
     toggle.setAttribute('aria-label', 'Open navigation menu');
@@ -53,6 +54,12 @@
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
     nav.classList.toggle('is-open', open);
+    // Explicitly set the mobile panel display so theme/page CSS cannot
+    // accidentally keep it hidden; remove the inline override when closed.
+    if (mobileQuery.matches) {
+      if (open) nav.style.display = 'flex';
+      else nav.style.removeProperty('display');
+    }
     if (!open) closeSubmenus();
   });
 
