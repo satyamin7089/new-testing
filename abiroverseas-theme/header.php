@@ -19,9 +19,9 @@ $ab_is_knowledge = is_singular( 'knowledge' ) || is_post_type_archive( 'knowledg
     <div class="ab-contact-line">
   <span>
     <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-mail" /></svg>
-    Email: <a href="mailto:info@abiroverseas.com" style="color:inherit;text-decoration:none;font-weight:600;">info@abiroverseas.com</a>
+    Email: <a href="mailto:info@abiroverseas.com" class="ab-header-contact-link">info@abiroverseas.com</a>
   </span><span><svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-phone" /></svg>
-Phone: <a href="tel:+18565233366" style="color:inherit;text-decoration:none;font-weight:600;">+1 (856) 523 3366</a>
+Phone: <a href="tel:+18565233366" class="ab-header-contact-link">+1 (856) 523 3366</a>
 </span></div>
     <div class="ab-ticker" aria-label="Indicative material information, not live prices">
       <span class="ab-ticker-label">Indicative · not live</span>
@@ -38,7 +38,7 @@ Phone: <a href="tel:+18565233366" style="color:inherit;text-decoration:none;font
     </nav>
   </div>
 </header>
-<svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden"><!-- Shared icon sprite for supplied page layouts. -->
+<svg aria-hidden="true" width="0" height="0" class="ab-icon-sprite"><!-- Shared icon sprite for supplied page layouts. -->
 <symbol id="ab-icon-arrow" viewBox="0 0 24 24">
             <path d="M4 12h15M13 5l7 7-7 7" />
         </symbol>
