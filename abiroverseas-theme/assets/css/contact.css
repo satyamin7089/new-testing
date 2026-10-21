@@ -289,7 +289,7 @@
 }
 @media (max-width: 600px) {
     .ab-contact-page .ab-wrap { width: calc(100% - 36px); }
-    .ab-contact-page .ab-eyebrow { font-size: 11px; letter-spacing: .1em; }
+    .ab-contact-page .ab-eyebrow { font-size: 14px; letter-spacing: .13em; }
 }
 
 
