@@ -18,7 +18,7 @@
     --ab-3d-deep: 0 4px 6px rgba(22, 44, 62, .05), 0 12px 28px rgba(22, 44, 62, .08), 0 24px 56px rgba(22, 44, 62, .07);
     --ab-3d-subtle: 0 1px 3px rgba(22, 44, 62, .04), 0 6px 16px rgba(22, 44, 62, .06);
     --ab-radius: 20px;
-    --ab-nav-h: 78px;
+
     --ab-max: 1240px;
     font-family: "Reddit Sans", Arial, Helvetica, sans-serif;
     color: var(--ab-ink);
@@ -1572,9 +1572,6 @@ box-shadow: 0 1px 4px rgba(245, 130, 32, .15);
 }
 
 @media(max-width:1100px) {
-    :root {
-        --ab-nav-h: 72px
-    }
 
 
     .ab-about-hero-grid {
@@ -1694,9 +1691,6 @@ box-shadow: 0 1px 4px rgba(245, 130, 32, .15);
 }
 
 @media(max-width:600px) {
-    :root {
-        --ab-nav-h: 66px
-    }
 
 
     body {
