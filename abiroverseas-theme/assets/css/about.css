@@ -76,10 +76,6 @@ textarea:focus-visible {
     outline-offset: 3px
 }
 
-.ab-wrap {
-    width: min(var(--ab-max), calc(100% - 56px));
-    margin-inline: auto
-}
 
 .ab-eyebrow {
     display: inline-flex;
@@ -264,16 +260,6 @@ p {
     color: var(--ab-teal)
 }
 
-.ab-icon {
-    width: 22px;
-    height: 22px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    flex: none
-}
 
 .ab-icon-box {
     width: 48px;
@@ -1590,9 +1576,6 @@ box-shadow: 0 1px 4px rgba(245, 130, 32, .15);
         --ab-nav-h: 72px
     }
 
-    .ab-wrap {
-        width: min(var(--ab-max), calc(100% - 42px))
-    }
 
     .ab-about-hero-grid {
         gap: 34px
@@ -1715,9 +1698,6 @@ box-shadow: 0 1px 4px rgba(245, 130, 32, .15);
         --ab-nav-h: 66px
     }
 
-    .ab-wrap {
-        width: calc(100% - 36px)
-    }
 
     body {
         font-size: 16px;
