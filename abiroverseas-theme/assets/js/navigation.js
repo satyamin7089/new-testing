@@ -47,21 +47,23 @@
     });
   });
 
-  toggle.addEventListener('click', (event) => {
+  // Capture the click before theme/page handlers can swallow it. CSS also keeps
+  // the actual button above any overlapping page decoration on touch screens.
+  document.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target.closest('.ab-nav-toggle') : null;
+    if (target !== toggle) return;
     event.preventDefault();
     event.stopPropagation();
     const open = toggle.getAttribute('aria-expanded') !== 'true';
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
     nav.classList.toggle('is-open', open);
-    // Explicitly set the mobile panel display so theme/page CSS cannot
-    // accidentally keep it hidden; remove the inline override when closed.
     if (mobileQuery.matches) {
-      if (open) nav.style.display = 'flex';
+      if (open) nav.style.setProperty('display', 'flex', 'important');
       else nav.style.removeProperty('display');
     }
     if (!open) closeSubmenus();
-  });
+  }, true);
 
   nav.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
