@@ -2881,3 +2881,31 @@ input[type="submit"],
         0 0 0 88px rgba(0, 128, 128, .018);
     pointer-events: none;
 }
+
+/* Abiroverseas light section refresh: .ab-process-section */
+
+/* Light brand treatment for the process-matching section. Keeps the existing
+   structure and layout while aligning it with the site's light editorial panels. */
+.ab-process-section {
+    background: radial-gradient(ellipse at 88% 8%, rgba(0,128,128,.10), transparent 34%), linear-gradient(135deg, #f7faf9 0%, #eef5f3 58%, #e7f1ef 100%);
+    color: #4d4d4e;
+}
+.ab-process-section::after {
+    border-color: rgba(0,128,128,.12);
+    box-shadow: 0 0 0 38px rgba(0,128,128,.035), 0 0 0 84px rgba(0,128,128,.025);
+}
+.ab-process-section h2,
+.ab-process-item h3 { color: #142334; }
+.ab-process-section .ab-section-head p,
+.ab-process-item p { color: #536572; }
+.ab-process-intro .ab-eyebrow { color: #008080; }
+.ab-process-flow::before {
+    background: linear-gradient(90deg, rgba(0,128,128,.12), rgba(0,128,128,.42), rgba(0,128,128,.12));
+}
+.ab-process-no {
+    border-color: rgba(0,128,128,.20);
+    background: linear-gradient(145deg, #fff, #e7f2ef);
+    color: #007b79;
+    box-shadow: 0 0 0 8px #f2f7f5, 0 8px 20px rgba(20,55,63,.08);
+}
+.ab-process-foot { color: #657984; }
