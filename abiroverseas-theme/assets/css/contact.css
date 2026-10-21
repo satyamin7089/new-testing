@@ -426,11 +426,3 @@
     .ab-contact-page .ab-contact-form .ab-field select,
     .ab-contact-page .ab-contact-form .ab-field textarea { font-size: 16px; }
 }
-/* Footer markup is shared, but this narrowly scoped Contact-page correction
-   prevents this page's footer quote CTA from inheriting oversized button rules. */
-body:has(.ab-contact-page) .ab-footer-action .ab-btn {
-    min-height: 42px;
-    padding: 9px 15px;
-    font-size: 15px;
-    line-height: 1.15;
-}
