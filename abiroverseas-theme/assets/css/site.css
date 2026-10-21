@@ -602,3 +602,37 @@
 @media (prefers-reduced-motion: reduce) {
     .ab-scroll-top { transition: none; }
 }
+
+
+/* Mobile hamburger hardening: keep the control above page overlays and guarantee a touch target. */
+@media (max-width: 850px) {
+  header.ab-mainnav#site-header {
+    position: sticky;
+    top: 0;
+    z-index: 99990;
+    isolation: isolate;
+  }
+  header.ab-mainnav#site-header .ab-nav-inner {
+    position: relative;
+    z-index: 1;
+  }
+  header.ab-mainnav#site-header .ab-nav-toggle {
+    position: relative;
+    z-index: 99999 !important;
+    flex: 0 0 46px;
+    pointer-events: auto !important;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  header.ab-mainnav#site-header .ab-nav-toggle * {
+    pointer-events: none;
+  }
+  header.ab-mainnav#site-header .ab-nav-links.is-open {
+    z-index: 99998;
+  }
+}
+@media (max-width: 600px) {
+  header.ab-mainnav#site-header .ab-nav-toggle {
+    flex-basis: 43px;
+  }
+}
