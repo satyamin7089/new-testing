@@ -392,3 +392,45 @@
     .ab-contact-page .ab-contact-form .ab-form-disclaimer { font-size: 13px; }
 }
 
+
+
+/* Contact page typography/layout aligned to the site's defined type scale. */
+.ab-contact-page { font-family: "Reddit Sans", Arial, Helvetica, sans-serif; }
+.ab-contact-page p,
+.ab-contact-page li,
+.ab-contact-page .ab-contact-hero-copy > p,
+.ab-contact-page .ab-contact-form .ab-contact-form-heading > p {
+    font-size: 17px;
+    line-height: 1.68;
+}
+.ab-contact-page h1 { font-size: 60px; }
+.ab-contact-page h2 { font-size: 52px; }
+.ab-contact-page h3 { font-size: 22px; }
+.ab-contact-page .ab-contact-form h3 { font-size: 22px; }
+.ab-contact-page .ab-contact-form .ab-contact-form-heading > p { font-size: 17px; }
+.ab-contact-page .ab-contact-form .ab-contact-step { font-size: 12px; }
+.ab-contact-page .ab-contact-form .ab-field label { font-size: 14px; }
+.ab-contact-page .ab-contact-form .ab-field input,
+.ab-contact-page .ab-contact-form .ab-field select,
+.ab-contact-page .ab-contact-form .ab-field textarea { font-size: 17px; }
+@media (max-width: 767px) {
+    .ab-contact-page p,
+    .ab-contact-page li,
+    .ab-contact-page .ab-contact-hero-copy > p,
+    .ab-contact-page .ab-contact-form .ab-contact-form-heading > p { font-size: 16px; }
+    .ab-contact-page h1 { font-size: clamp(36px, 8vw, 44px); }
+    .ab-contact-page h2 { font-size: clamp(30px, 6.5vw, 38px); }
+    .ab-contact-page h3,
+    .ab-contact-page .ab-contact-form h3 { font-size: 22px; }
+    .ab-contact-page .ab-contact-form .ab-field input,
+    .ab-contact-page .ab-contact-form .ab-field select,
+    .ab-contact-page .ab-contact-form .ab-field textarea { font-size: 16px; }
+}
+/* Footer markup is shared, but this narrowly scoped Contact-page correction
+   prevents this page's footer quote CTA from inheriting oversized button rules. */
+body:has(.ab-contact-page) .ab-footer-action .ab-btn {
+    min-height: 42px;
+    padding: 9px 15px;
+    font-size: 15px;
+    line-height: 1.15;
+}
