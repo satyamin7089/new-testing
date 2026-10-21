@@ -1462,9 +1462,7 @@ proof */
     scroll-margin-top: 100px
 }
 
-/* Soft, complete footer with the same replaceable brand-image path as 
-the header */
-/* final CTA and footer */
+/* Home page final call-to-action section; the shared footer is styled in site.css. */
 .ab-final-cta {
     padding: 78px 0;
     background: linear-gradient(110deg, #113044, #13576a 75%, #147779);
