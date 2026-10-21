@@ -127,9 +127,7 @@
 .ab-footer-action .ab-btn {
     display: inline-flex;
     width: fit-content;
-    max-width: 100%;
     min-height: 48px;
-    flex: 0 0 auto;
     align-items: center;
     justify-content: center;
     gap: 9px;
@@ -139,13 +137,9 @@
     background: #f58220;
     padding: 11px 16px;
     color: #fff;
-    font-family: "Reddit Sans", Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: 800;
     line-height: 1.2;
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
     box-shadow: 0 8px 20px rgba(245, 130, 32, .22);
     transition: transform .2s ease, background .2s ease;
 }
