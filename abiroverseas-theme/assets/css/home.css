@@ -14,7 +14,7 @@
     --ab-shadow: 0 24px 58px rgba(22, 44, 62, .12);
     --ab-shadow-sm: 0 11px 30px rgba(22, 44, 62, .085);
     --ab-radius: 24px;
-    --ab-nav-h: 78px;
+
     --ab-max: 1240px;
     font-family: "Reddit Sans", Arial, Helvetica, sans-serif;
     color: var(--ab-ink);
@@ -1712,9 +1712,6 @@ hard outlines. */
 }
 
 @media(max-width:1100px) {
-    :root {
-        --ab-nav-h: 72px
-    }
 
 
     .ab-hero-grid {
@@ -1849,9 +1846,6 @@ hard outlines. */
         margin-top: 25px
     }
 
-    :root {
-        --ab-nav-h: 66px
-    }
 
 
     body {
