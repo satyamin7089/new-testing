@@ -241,7 +241,7 @@
     align-items: center;
     gap: 10px;
     color: var(--ab-teal);
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 700;
     letter-spacing: .13em;
     text-transform: uppercase;
@@ -302,7 +302,7 @@
     box-shadow: 0 17px 40px rgba(22, 44, 62, .11), inset 0 1px 0 #fff;
 }
 .ab-contact-page .ab-contact-form-heading { margin-bottom: 20px; }
-.ab-contact-page .ab-contact-form .ab-contact-step { font-size: 14px; }
+.ab-contact-page .ab-contact-form .ab-contact-step { font-size: 11px; }
 .ab-contact-page .ab-contact-form h3 {
     margin: 0 0 7px;
     font-size: 28px;
@@ -312,7 +312,7 @@
 .ab-contact-page .ab-contact-form .ab-contact-form-heading > p {
     margin: 0 0 20px;
     color: var(--ab-muted, #536572);
-    font-size: 17px;
+    font-size: 15px;
     line-height: 1.68;
 }
 .ab-contact-page .ab-contact-form .ab-form-grid {
@@ -322,7 +322,7 @@
 .ab-contact-page .ab-contact-form .ab-field { gap: 7px; }
 .ab-contact-page .ab-contact-form .ab-field label {
     color: #344953;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 700;
     line-height: 1.5;
 }
@@ -379,7 +379,7 @@
     background: #ff963b;
     box-shadow: 0 12px 26px rgba(245, 130, 32, .3);
 }
-.ab-contact-page .ab-contact-form .ab-form-disclaimer { font-size: 17px; }
+.ab-contact-page .ab-contact-form .ab-form-disclaimer { font-size: 11px; }
 @media (max-width: 980px) {
     .ab-contact-page .ab-contact-form { padding: 29px; }
     .ab-contact-page .ab-contact-form .ab-form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -392,19 +392,3 @@
     .ab-contact-page .ab-contact-form .ab-form-disclaimer { font-size: 13px; }
 }
 
-/* Typography normalization: match the shared Home/About Reddit Sans system.
-   Deliberately scoped to Contact main content; header/footer belong to site.css. */
-.ab-contact-page,
-.ab-contact-page * {
-    font-family: "Reddit Sans", Arial, Helvetica, sans-serif;
-}
-.ab-contact-page {
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-}
-.ab-contact-page input,
-.ab-contact-page select,
-.ab-contact-page textarea,
-.ab-contact-page button {
-    font-family: inherit;
-}
