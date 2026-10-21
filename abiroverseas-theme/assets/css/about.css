@@ -2285,3 +2285,31 @@ text-transform: uppercase;
 
 
 
+
+
+/* Abiroverseas light section refresh: .ab-way-section */
+
+/* Light brand treatment for the About page's brief-to-material process section. */
+.ab-way-section {
+    background: radial-gradient(ellipse at 12% 10%, rgba(0,128,128,.08), transparent 35%), linear-gradient(135deg, #f8faf9 0%, #eef5f3 60%, #e7f1ef 100%);
+    color: #4d4d4e;
+}
+.ab-way-section::before,
+.ab-way-section::after {
+    border-color: rgba(0,128,128,.10);
+}
+.ab-way-section .ab-section-head h2 { color: #142334; }
+.ab-way-section .ab-section-head p { color: #536572; }
+.ab-way-section .ab-eyebrow { color: #008080; }
+.ab-way-item {
+    background: rgba(255,255,255,.88);
+    border-color: rgba(0,128,128,.12);
+    box-shadow: 0 12px 30px rgba(20,44,57,.055);
+}
+.ab-way-item h3 { color: #142334; }
+.ab-way-item p { color: #536572; }
+.ab-way-no {
+    background: linear-gradient(145deg, #fff, #e4f1ee);
+    color: #007b79;
+    border-color: rgba(0,128,128,.18);
+}
