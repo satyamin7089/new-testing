@@ -2313,3 +2313,38 @@ text-transform: uppercase;
     color: #007b79;
     border-color: rgba(0,128,128,.18);
 }
+
+
+/* Corrected light treatment: preserve the original open four-column process layout. */
+.ab-way-section {
+    background: radial-gradient(ellipse at 12% 10%, rgba(0,128,128,.08), transparent 35%), linear-gradient(135deg, #f8faf9 0%, #eef5f3 60%, #e7f1ef 100%);
+    color: #4d5d68;
+}
+.ab-way-section::after {
+    border: 1px solid rgba(0,128,128,.10);
+    box-shadow: 0 0 0 38px rgba(0,128,128,.025), 0 0 0 84px rgba(0,128,128,.018);
+}
+.ab-way-section .ab-section-head h2 { color: #142334; }
+.ab-way-section .ab-section-head p { color: #536572; }
+.ab-way-section .ab-eyebrow { color: #008080; }
+.ab-way-intro { align-items: flex-end; }
+.ab-way-grid { gap: 20px; }
+.ab-way-item {
+    padding: 0 18px 10px 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+.ab-way-grid::before {
+    background: linear-gradient(90deg, rgba(0,128,128,.10), rgba(0,128,128,.34), rgba(0,128,128,.10));
+}
+.ab-way-item h3 { color: #142334; }
+.ab-way-item p { color: #536572; }
+.ab-way-no {
+    border: 0;
+    background: linear-gradient(145deg, #ffffff, #e1efec);
+    color: #007b79;
+    box-shadow: 0 0 0 8px #f1f6f4, 0 4px 14px rgba(20,55,63,.10), 0 8px 22px rgba(20,55,63,.06);
+}
+.ab-way-foot { color: #657984; }
