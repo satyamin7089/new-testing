@@ -1,4 +1,4 @@
-/* Knowledge Center archive and article layouts, plus the shared Home-layout header. */
+/* Knowledge Center archive and article layouts. Shared header/footer styling lives in site.css. */
 :root {
     --kh-teal: #008080;
     --kh-blue: #1D4E9F;
@@ -79,11 +79,6 @@ summary:focus-visible {
     min-height: 60vh
 }
 
-/* Same topbar, ticker, logo, navigation, dropdown and CTA as Home/About/HDPE. */
-.ab-wrap {
-    width: min(var(--ab-max), calc(100% - 56px));
-    margin-inline: auto
-}
 
 .ab-skip {
     position: absolute;
@@ -100,16 +95,6 @@ summary:focus-visible {
     top: 12px
 }
 
-.ab-icon {
-    width: 22px;
-    height: 22px;
-    flex: none;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round
-}
 
 @keyframes ab-kh-marquee {
     to {
@@ -920,13 +905,7 @@ summary:focus-visible {
 }
 
 @media(max-width:600px) {
-    .ab-wrap {
-        width: calc(100% - 36px)
-    }
 
-    .kh-topbar {
-        font-size: 11px
-    }
 
     .kh-hero h1 {
         font-size: 36px
