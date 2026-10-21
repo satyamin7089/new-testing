@@ -13,11 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
         <div class="ab-footer-contact">
   <span>
     <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-mail" /></svg>
-    Email: <a href="mailto:info@abiroverseas.com" style="color:inherit;text-decoration:none;">info@abiroverseas.com</a>
+    Email: <a href="mailto:info@abiroverseas.com" class="ab-footer-contact-link">info@abiroverseas.com</a>
   </span>
   <span>
     <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-phone" /></svg>
-    Phone: <a href="tel:+18565233366" style="color:inherit;text-decoration:none;">+1 (856) 523 3366</a>
+    Phone: <a href="tel:+18565233366" class="ab-footer-contact-link">+1 (856) 523 3366</a>
   </span>
 </div>
       </div>
