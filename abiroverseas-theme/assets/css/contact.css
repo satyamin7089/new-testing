@@ -391,3 +391,20 @@
     .ab-contact-page .ab-contact-form .ab-contact-submit { width: 100%; }
     .ab-contact-page .ab-contact-form .ab-form-disclaimer { font-size: 13px; }
 }
+
+/* Typography normalization: match the shared Home/About Reddit Sans system.
+   Deliberately scoped to Contact main content; header/footer belong to site.css. */
+.ab-contact-page,
+.ab-contact-page * {
+    font-family: "Reddit Sans", Arial, Helvetica, sans-serif;
+}
+.ab-contact-page {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+.ab-contact-page input,
+.ab-contact-page select,
+.ab-contact-page textarea,
+.ab-contact-page button {
+    font-family: inherit;
+}
