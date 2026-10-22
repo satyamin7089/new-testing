@@ -1734,3 +1734,95 @@ input[type="submit"],
         border-radius: 20px
     }
 }
+
+/* Optional paragraph/disclaimer placed immediately after each Knowledge Article section. */
+.kh-section-note {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 20px 0 0;
+    padding: 15px 18px;
+    border: 0;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f1f7f6 0%, #f8fbfa 100%);
+    box-shadow: 0 5px 15px rgba(22, 44, 62, .055), inset 0 1px 0 rgba(255, 255, 255, .96);
+}
+.kh-section-note::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    bottom: 14px;
+    left: 0;
+    width: 3px;
+    border-radius: 4px;
+    background: #008080;
+}
+.kh-section-note-label {
+    flex: 0 0 auto;
+    padding-top: 3px;
+    color: #087b76;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+.kh-section-note-copy {
+    min-width: 0;
+    flex: 1 1 auto;
+    color: #536372;
+    font-size: 14px;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+}
+.kh-section-note-copy p {
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+.kh-section-note-copy p + p {
+    margin-top: 8px;
+}
+.kh-section-note-copy ul,
+.kh-section-note-copy ol {
+    margin: 8px 0 0;
+    padding-left: 1.3em;
+}
+.kh-section-note-copy a {
+    color: #126d78;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.kh-section-note--cta {
+    margin-top: 22px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .035));
+    box-shadow: inset 3px 0 0 #7ed0c9, inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+.kh-section-note--cta::before {
+    display: none;
+}
+.kh-section-note--cta .kh-section-note-label {
+    color: #7ed0c9;
+}
+.kh-section-note--cta .kh-section-note-copy,
+.kh-section-note--cta .kh-section-note-copy p {
+    color: #d3e0e4;
+}
+.kh-section-note--cta .kh-section-note-copy a {
+    color: #a6ddd3;
+}
+@media (max-width: 600px) {
+    .kh-section-note {
+        gap: 9px;
+        padding: 13px 14px;
+        border-radius: 13px;
+    }
+    .kh-section-note-label {
+        font-size: 9px;
+    }
+    .kh-section-note-copy {
+        font-size: 13px;
+    }
+}
