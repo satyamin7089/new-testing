@@ -1,5 +1,27 @@
 /* Global shared header and footer. Loaded after page styles so navigation and footer stay consistent everywhere. */
+
+/* Shared document baseline for page templates with content-scoped CSS. */
+body { margin: 0; }
+
+/* Keep the shared site chrome on the same box model on every page. */
+.ab-topbar,
+.ab-topbar *,
+.ab-topbar *::before,
+.ab-topbar *::after,
+.ab-mainnav,
+.ab-mainnav *,
+.ab-mainnav *::before,
+.ab-mainnav *::after,
+.ab-footer,
+.ab-footer *,
+.ab-footer *::before,
+.ab-footer *::after {
+    box-sizing: border-box;
+}
+
 .ab-footer {
+    font-size: 17px;
+    line-height: 1.68;
     background: radial-gradient(ellipse at 86% 4%, rgba(0, 128, 128, .18), transparent 35%), #0d2232;
     color: #b5c4ca;
     padding: 54px 0 24px;
@@ -254,7 +276,7 @@
 
 /* Shared Home-style header. This stylesheet loads after page-specific CSS. */
 .ab-topbar, .ab-mainnav, .ab-topbar *, .ab-mainnav * { font-family: "Reddit Sans", Arial, Helvetica, sans-serif; }
-.ab-topbar { background:#102638; color:#d8e4e9; font-size:14px; letter-spacing:.01em; }
+.ab-topbar { background:#102638; color:#d8e4e9; font-size:14px; line-height:1.68; letter-spacing:.01em; }
 .ab-topbar-inner { min-height:38px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
 .ab-contact-line { display:flex; align-items:center; gap:18px; min-width:0; white-space:nowrap; }
 .ab-contact-line span { display:inline-flex; align-items:center; gap:7px; }
@@ -280,7 +302,7 @@
 .ab-ticker-item em { color:#9ac9c2; font-style:normal; }
 .ab-ticker-dot { width:4px; height:4px; border-radius:50%; background:#f58220; }
 
-.ab-mainnav { position:sticky; top:0; z-index:100; border-bottom:1px solid rgba(220,229,229,.8); background:rgba(255,255,255,.94); box-shadow:0 5px 22px rgba(23,44,57,.045); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
+.ab-mainnav { position:sticky; top:0; z-index:100; border-bottom:1px solid rgba(220,229,229,.8); background:rgba(255,255,255,.94); box-shadow:0 5px 22px rgba(23,44,57,.045); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); line-height:1.68; }
 .ab-nav-inner { position:relative; display:flex; min-height:var(--ab-nav-h); align-items:center; gap:28px; }
 .ab-nav-inner .ab-logo-slot { position:absolute; top:50%; left:0; z-index:2; transform:translateY(-50%); }
 .ab-logo-slot { display:flex; width:190px; height:53px; flex:none; align-items:center; }
