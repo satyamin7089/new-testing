@@ -28,3 +28,27 @@
 .ab-editor-note { border-color: #9bb8b7 !important; background: linear-gradient(145deg, #f7fbfa, #fff) !important; }
 .ab-editor-note p { max-width: 900px; line-height: 1.6; }
 @media (max-width: 782px) { .ab-admin-column-headings { grid-template-columns: 1fr; } }
+
+
+/* Optional per-section note/disclaimer editors in Knowledge Article admin. */
+.ab-admin-section-note {
+    margin-top: 18px;
+    padding: 15px;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #f4f9f8, #fbfdfc);
+    box-shadow: inset 3px 0 0 #008080, inset 0 1px 0 #fff;
+}
+.ab-admin-section-note h4 {
+    margin: 0 0 5px;
+    color: #142334;
+    font-size: 13px;
+    font-weight: 700;
+}
+.ab-admin-section-note > .description {
+    display: block;
+    margin: 0 0 9px;
+    line-height: 1.55;
+}
+.ab-admin-section-note .ab-admin-rich-field {
+    max-width: 100%;
+}
