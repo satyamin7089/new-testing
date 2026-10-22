@@ -357,6 +357,63 @@ function ab_render_repeater( $name, $rows, $label, $columns, $button ) {
     echo '</div><button type="button" class="button button-secondary" data-add>' . esc_html( $button ) . '</button></section>';
 }
 
+
+
+/**
+ * Decode and sanitize repeater rows submitted by the Knowledge Article builder.
+ * This helper is shared by Page FAQs and Knowledge Article comparison, selection,
+ * FAQ, and related-link fields. Rich answer/detail fields retain safe post HTML.
+ */
+function ab_decode_rows( $field_name, $allowed_fields ) {
+    if ( ! isset( $_POST[ $field_name ] ) || ! is_scalar( $_POST[ $field_name ] ) ) {
+        return array();
+    }
+
+    $raw_rows = wp_unslash( (string) $_POST[ $field_name ] );
+    $decoded = json_decode( $raw_rows, true );
+    if ( ! is_array( $decoded ) ) {
+        return array();
+    }
+
+    $rows = array();
+    $rich_fields = array( 'answer', 'detail' );
+
+    foreach ( $decoded as $row ) {
+        if ( ! is_array( $row ) ) {
+            continue;
+        }
+
+        $clean_row = array();
+        $has_content = false;
+
+        foreach ( $allowed_fields as $field ) {
+            $value = isset( $row[ $field ] ) && is_scalar( $row[ $field ] )
+                ? (string) $row[ $field ]
+                : '';
+
+            if ( in_array( $field, $rich_fields, true ) ) {
+                $value = wp_kses_post( $value );
+            } elseif ( 'url' === $field ) {
+                // Preserve safe absolute URLs and internal paths such as /hdpe/ or /#quick-enquiry.
+                $value = esc_url_raw( trim( $value ) );
+            } else {
+                $value = sanitize_text_field( $value );
+            }
+
+            $clean_row[ $field ] = $value;
+            if ( '' !== trim( wp_strip_all_tags( $value ) ) ) {
+                $has_content = true;
+            }
+        }
+
+        if ( $has_content ) {
+            $rows[] = $clean_row;
+        }
+    }
+
+    return $rows;
+}
+
 add_action( 'save_post_page', 'ab_save_page_meta', 10, 2 );
 function ab_save_page_meta( $post_id, $post ) {
     if ( ! isset( $_POST['ab_page_meta_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['ab_page_meta_nonce'] ) ), 'ab_page_meta_save' ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! current_user_can( 'edit_post', $post_id ) ) { return; }
