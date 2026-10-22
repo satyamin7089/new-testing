@@ -2,7 +2,7 @@
 /** Abiroverseas — WordPress theme functions. */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'AB_THEME_VERSION', '1.3.9' );
+define( 'AB_THEME_VERSION', '1.4.0' );
 
 add_action( 'after_setup_theme', 'ab_theme_setup' );
 function ab_theme_setup() {
@@ -333,9 +333,17 @@ function ab_knowledge_metabox( $post ) {
 }
 function ab_render_knowledge_section_note( $post_id, $meta_key ) {
     $value = get_post_meta( $post_id, $meta_key, true );
-    echo '<div class="ab-admin-section-note"><h4>Optional section note / disclaimer</h4><p class="description">This paragraph appears immediately after this section on the published article. Leave it blank to hide the note.</p>';
+    $has_value = is_string( $value ) && '' !== trim( wp_strip_all_tags( $value ) );
+    $state_class = $has_value ? ' is-enabled' : '';
+    $expanded = $has_value ? 'true' : 'false';
+    $button_label = $has_value ? 'Hide note editor' : '+ Add optional note / disclaimer';
+
+    echo '<div class="ab-admin-section-note' . esc_attr( $state_class ) . '" data-section-note>';
+    echo '<button type="button" class="button button-secondary ab-section-note-toggle" data-section-note-toggle aria-expanded="' . esc_attr( $expanded ) . '">' . esc_html( $button_label ) . '</button>';
+    echo '<div class="ab-admin-section-note-editor"' . ( $has_value ? '' : ' hidden' ) . '>';
+    echo '<h4>Section note / disclaimer</h4><p class="description">This paragraph appears immediately after this section on the published article. Leave it empty to show no note.</p>';
     ab_render_rich_field( $meta_key, $meta_key, $value );
-    echo '</div>';
+    echo '</div></div>';
 }
 function ab_knowledge_meta_default( $post_id, $key, $default = '' ) {
     return metadata_exists( 'post', $post_id, $key ) ? (string) get_post_meta( $post_id, $key, true ) : $default;
