@@ -2,7 +2,7 @@
 /** Abiroverseas — WordPress theme functions. */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'AB_THEME_VERSION', '1.4.1' );
+define( 'AB_THEME_VERSION', '1.4.0' );
 
 add_action( 'after_setup_theme', 'ab_theme_setup' );
 function ab_theme_setup() {
@@ -333,11 +333,7 @@ function ab_knowledge_metabox( $post ) {
 }
 function ab_render_knowledge_section_note( $post_id, $meta_key ) {
     $value = get_post_meta( $post_id, $meta_key, true );
-    $heading_key = $meta_key . '_heading';
-    $heading = get_post_meta( $post_id, $heading_key, true );
-    $has_note = is_string( $value ) && '' !== trim( wp_strip_all_tags( $value ) );
-    $has_heading = is_string( $heading ) && '' !== trim( $heading );
-    $has_value = $has_note || $has_heading;
+    $has_value = is_string( $value ) && '' !== trim( wp_strip_all_tags( $value ) );
     $state_class = $has_value ? ' is-enabled' : '';
     $expanded = $has_value ? 'true' : 'false';
     $button_label = $has_value ? 'Hide note editor' : '+ Add optional note / disclaimer';
@@ -345,8 +341,7 @@ function ab_render_knowledge_section_note( $post_id, $meta_key ) {
     echo '<div class="ab-admin-section-note' . esc_attr( $state_class ) . '" data-section-note>';
     echo '<button type="button" class="button button-secondary ab-section-note-toggle" data-section-note-toggle aria-expanded="' . esc_attr( $expanded ) . '">' . esc_html( $button_label ) . '</button>';
     echo '<div class="ab-admin-section-note-editor"' . ( $has_value ? '' : ' hidden' ) . '>';
-    echo '<h4>Optional paragraph after this section</h4><p class="description">Add a paragraph only where needed. You can label it Important, Disclaimer, or with your own heading. Leave the heading blank to show the paragraph without a heading.</p>';
-    echo '<p><label class="ab-admin-full"><strong>Heading (optional)</strong><input class="large-text" type="text" name="' . esc_attr( $heading_key ) . '" value="' . esc_attr( $heading ) . '" placeholder="Important, Disclaimer, or your own heading"></label></p>';
+    echo '<h4>Section note / disclaimer</h4><p class="description">This paragraph appears immediately after this section on the published article. Leave it empty to show no note.</p>';
     ab_render_rich_field( $meta_key, $meta_key, $value );
     echo '</div></div>';
 }
@@ -480,9 +475,6 @@ function ab_save_knowledge_meta( $post_id, $post ) {
         if ( isset( $_POST[ $note_key ] ) && is_scalar( $_POST[ $note_key ] ) ) {
             update_post_meta( $post_id, $note_key, wp_kses_post( wp_unslash( $_POST[ $note_key ] ) ) );
         }
-    }
-    foreach ( array( 'abk_note_direct_heading', 'abk_note_comparison_heading', 'abk_note_why_heading', 'abk_note_article_content_heading', 'abk_note_when_heading', 'abk_note_faqs_heading', 'abk_note_related_heading', 'abk_note_cta_heading' ) as $note_heading_key ) {
-        update_post_meta( $post_id, $note_heading_key, isset( $_POST[ $note_heading_key ] ) ? sanitize_text_field( wp_unslash( $_POST[ $note_heading_key ] ) ) : '' );
     }
 }
 add_action( 'admin_enqueue_scripts', 'ab_knowledge_admin_assets' );
