@@ -299,27 +299,42 @@ function ab_knowledge_metabox( $post ) {
     echo '<p><label><strong>SEO title</strong><br><input class="large-text" name="ab_meta_title" maxlength="255" value="' . esc_attr( $seo_title ) . '"></label></p><p><label><strong>Meta description</strong><br><textarea class="large-text" rows="2" maxlength="320" name="ab_meta_description">' . esc_textarea( $seo_desc ) . '</textarea></label></p><p class="description">Set the WordPress Featured image in the editor sidebar. It appears on Knowledge Hub cards and in this article’s hero.</p></section>';
     echo '<section><h3>Direct answer</h3><label class="ab-admin-full"><strong>Section heading</strong><input class="large-text" name="abk_heading_direct" value="' . esc_attr( ab_knowledge_meta_default( $post->ID, 'abk_heading_direct', 'Direct answer' ) ) . '"></label><p class="description">A concise answer shown near the start of the article. Select text and use the link button to add an inline link.</p>';
     ab_render_rich_field( 'abk_direct_answer', 'abk_direct_answer', $fields['direct_answer'] );
+    ab_render_knowledge_section_note( $post->ID, 'abk_note_direct' );
     echo '</section>';
     echo '<section><h3>Quick comparison</h3><label class="ab-admin-full"><strong>Section heading</strong><input class="large-text" name="abk_heading_comparison" value="' . esc_attr( ab_knowledge_meta_default( $post->ID, 'abk_heading_comparison', 'Compare materials' ) ) . '"></label><p class="description">Edit the three column headings to suit this article.</p><div class="ab-admin-column-headings">';
     $comparison_header_labels = array( 'material' => 'Column 1 heading', 'best_for' => 'Column 2 heading', 'consideration' => 'Column 3 heading' );
     foreach ( $comparison_headers as $key => $value ) { echo '<label>' . esc_html( $comparison_header_labels[ $key ] ) . '<input class="regular-text" name="abk_comparison_header_' . esc_attr( $key ) . '" value="' . esc_attr( $value ) . '"></label>'; }
     echo '</div>';
     ab_render_repeater( 'abk_comparison_rows_json', $fields['comparison'], 'Comparison rows', array( 'material' => 'Material / option', 'best_for' => 'Typical fit', 'consideration' => 'Key consideration' ), 'Add comparison row' );
+    ab_render_knowledge_section_note( $post->ID, 'abk_note_comparison' );
     echo '</section>';
     echo '<section><h3>Why materials differ</h3><label class="ab-admin-full"><strong>Section heading</strong><input class="large-text" name="abk_heading_why" value="' . esc_attr( ab_knowledge_meta_default( $post->ID, 'abk_heading_why', 'Why materials differ' ) ) . '"></label><p class="description">Use the rich text controls for inline links and formatting.</p>';
     ab_render_rich_field( 'abk_why', 'abk_why', $fields['why'] );
+    ab_render_knowledge_section_note( $post->ID, 'abk_note_why' );
     echo '</section>';
     echo '<section><h3>When to consider</h3><label class="ab-admin-full"><strong>Section heading</strong><input class="large-text" name="abk_heading_when" value="' . esc_attr( ab_knowledge_meta_default( $post->ID, 'abk_heading_when', 'When to consider each material' ) ) . '"></label>';
     ab_render_repeater( 'abk_when_rows_json', $fields['when'], 'Selection guidance', array( 'material' => 'Material / situation', 'detail' => 'When to consider it' ), 'Add consideration' );
+    ab_render_knowledge_section_note( $post->ID, 'abk_note_when' );
     echo '</section>';
     echo '<section><h3>Frequently asked questions</h3><label class="ab-admin-full"><strong>Section heading</strong><input class="large-text" name="abk_heading_faqs" value="' . esc_attr( ab_knowledge_meta_default( $post->ID, 'abk_heading_faqs', 'Frequently asked questions' ) ) . '"></label>';
     ab_render_repeater( 'abk_faqs_json', $fields['faqs'], 'Questions & answers', array( 'question' => 'Question', 'answer' => 'Answer (links supported)' ), 'Add FAQ' );
+    ab_render_knowledge_section_note( $post->ID, 'abk_note_faqs' );
     echo '</section>';
     echo '<section><h3>Related materials</h3><label class="ab-admin-full"><strong>Section heading</strong><input class="large-text" name="abk_heading_related" value="' . esc_attr( ab_knowledge_meta_default( $post->ID, 'abk_heading_related', 'Related materials' ) ) . '"></label>';
     ab_render_repeater( 'abk_related_links_json', $fields['related'], 'Related product / material links', array( 'label' => 'Link label', 'url' => 'Full URL or site path' ), 'Add related link' );
+    ab_render_knowledge_section_note( $post->ID, 'abk_note_related' );
     echo '</section>';
     echo '<section class="ab-editor-note"><h3>Extra article sections</h3><p>For any additional content, use the standard WordPress block editor for this article. Click the <strong>＋</strong> inserter to add a heading, rich text/links, image, list, quote, table, or group. That content appears after “Why materials differ” and before “When to consider”.</p></section>';
-    echo '<section><h3>Enquiry call-to-action</h3><p class="description">A premium article-end contact panel. Keep the kicker blank to omit it; write the heading and button text for this article.</p><label class="ab-admin-full">Optional kicker<br><input class="large-text" name="abk_cta_kicker" value="' . esc_attr( get_post_meta( $post->ID, 'abk_cta_kicker', true ) ) . '"></label><p><label><strong>CTA heading</strong><br><input class="large-text" name="abk_cta_title" value="' . esc_attr( ab_knowledge_meta_default( $post->ID, 'abk_cta_title', 'Let’s discuss your material requirement.' ) ) . '"></label></p><p><label><strong>CTA text</strong><br><textarea class="large-text" rows="3" name="abk_cta_text">' . esc_textarea( ab_knowledge_meta_default( $post->ID, 'abk_cta_text', 'Share your process, application and target specification. We’ll help you frame the next step.' ) ) . '</textarea></label></p><p><label><strong>Button text</strong><br><input class="regular-text" name="abk_cta_label" value="' . esc_attr( ab_knowledge_meta_default( $post->ID, 'abk_cta_label', 'Start a material conversation' ) ) . '"></label></p><p><label><strong>Button URL</strong><br><input class="large-text" name="abk_cta_url" value="' . esc_attr( ab_knowledge_meta_default( $post->ID, 'abk_cta_url', '/#quick-enquiry' ) ) . '" placeholder="/#quick-enquiry"></label></p></section>';
+    ab_render_knowledge_section_note( $post->ID, 'abk_note_article_content' );
+    echo '<section><h3>Enquiry call-to-action</h3><p class="description">A premium article-end contact panel. Keep the kicker blank to omit it; write the heading and button text for this article.</p><label class="ab-admin-full">Optional kicker<br><input class="large-text" name="abk_cta_kicker" value="' . esc_attr( get_post_meta( $post->ID, 'abk_cta_kicker', true ) ) . '"></label><p><label><strong>CTA heading</strong><br><input class="large-text" name="abk_cta_title" value="' . esc_attr( ab_knowledge_meta_default( $post->ID, 'abk_cta_title', 'Let’s discuss your material requirement.' ) ) . '"></label></p><p><label><strong>CTA text</strong><br><textarea class="large-text" rows="3" name="abk_cta_text">' . esc_textarea( ab_knowledge_meta_default( $post->ID, 'abk_cta_text', 'Share your process, application and target specification. We’ll help you frame the next step.' ) ) . '</textarea></label></p><p><label><strong>Button text</strong><br><input class="regular-text" name="abk_cta_label" value="' . esc_attr( ab_knowledge_meta_default( $post->ID, 'abk_cta_label', 'Start a material conversation' ) ) . '"></label></p><p><label><strong>Button URL</strong><br><input class="large-text" name="abk_cta_url" value="' . esc_attr( ab_knowledge_meta_default( $post->ID, 'abk_cta_url', '/#quick-enquiry' ) ) . '" placeholder="/#quick-enquiry"></label></p>';
+    ab_render_knowledge_section_note( $post->ID, 'abk_note_cta' );
+    echo '</section>';
+    echo '</div>';
+}
+function ab_render_knowledge_section_note( $post_id, $meta_key ) {
+    $value = get_post_meta( $post_id, $meta_key, true );
+    echo '<div class="ab-admin-section-note"><h4>Optional section note / disclaimer</h4><p class="description">This paragraph appears immediately after this section on the published article. Leave it blank to hide the note.</p>';
+    ab_render_rich_field( $meta_key, $meta_key, $value );
     echo '</div>';
 }
 function ab_knowledge_meta_default( $post_id, $key, $default = '' ) {
@@ -448,6 +463,11 @@ function ab_save_knowledge_meta( $post_id, $post ) {
     update_post_meta( $post_id, 'abk_when_rows', ab_decode_rows( 'abk_when_rows_json', array( 'material', 'detail' ) ) );
     update_post_meta( $post_id, 'abk_faqs', ab_decode_rows( 'abk_faqs_json', array( 'question', 'answer' ) ) );
     update_post_meta( $post_id, 'abk_related_links', ab_decode_rows( 'abk_related_links_json', array( 'label', 'url' ) ) );
+    foreach ( array( 'abk_note_direct', 'abk_note_comparison', 'abk_note_why', 'abk_note_article_content', 'abk_note_when', 'abk_note_faqs', 'abk_note_related', 'abk_note_cta' ) as $note_key ) {
+        if ( isset( $_POST[ $note_key ] ) && is_scalar( $_POST[ $note_key ] ) ) {
+            update_post_meta( $post_id, $note_key, wp_kses_post( wp_unslash( $_POST[ $note_key ] ) ) );
+        }
+    }
 }
 add_action( 'admin_enqueue_scripts', 'ab_knowledge_admin_assets' );
 function ab_knowledge_admin_assets( $hook ) {
