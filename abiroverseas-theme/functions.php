@@ -76,7 +76,7 @@ function ab_enqueue_assets() {
             // Both product directories share one responsive design system and live-search controller.
             $style = 'products.css';
             $script = 'products.js';
-        } elseif ( 'contact-us' === $slug || 'page-templates/template-contact.php' === $template ) {
+        } elseif ( 'contact-us' === $slug || 'page-template/template-contact.php' === $template ) {
             // Keep Contact page styling isolated in its own stylesheet.
             $style = 'contact.css';
         } elseif ( in_array( $slug, array( 'hdpe', 'material', 'materials' ), true ) || 'page-templates/template-material.php' === $template ) {
