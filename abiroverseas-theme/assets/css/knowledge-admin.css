@@ -30,25 +30,38 @@
 @media (max-width: 782px) { .ab-admin-column-headings { grid-template-columns: 1fr; } }
 
 
-/* Optional per-section note/disclaimer editors in Knowledge Article admin. */
+/* Optional per-section note/disclaimer editors: fields open only when requested. */
 .ab-admin-section-note {
-    margin-top: 18px;
+    margin-top: 12px;
+}
+.ab-section-note-toggle {
+    display: inline-flex;
+    min-height: 32px;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+.ab-admin-section-note-editor {
+    margin-top: 12px;
     padding: 15px;
     border-radius: 8px;
     background: linear-gradient(145deg, #f4f9f8, #fbfdfc);
     box-shadow: inset 3px 0 0 #008080, inset 0 1px 0 #fff;
 }
-.ab-admin-section-note h4 {
+.ab-admin-section-note-editor[hidden] {
+    display: none !important;
+}
+.ab-admin-section-note-editor h4 {
     margin: 0 0 5px;
     color: #142334;
     font-size: 13px;
     font-weight: 700;
 }
-.ab-admin-section-note > .description {
+.ab-admin-section-note-editor > .description {
     display: block;
     margin: 0 0 9px;
     line-height: 1.55;
 }
-.ab-admin-section-note .ab-admin-rich-field {
+.ab-admin-section-note-editor .ab-admin-rich-field {
     max-width: 100%;
 }
