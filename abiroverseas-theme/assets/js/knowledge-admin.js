@@ -82,6 +82,25 @@
     syncRepeater(group);
   });
 
+  // Section notes are opt-in: open an editor only when the author chooses to add/edit one.
+  document.querySelectorAll('[data-section-note]').forEach(wrapper => {
+    const toggle = wrapper.querySelector('[data-section-note-toggle]');
+    const editor = wrapper.querySelector('.ab-admin-section-note-editor');
+    if (!toggle || !editor) return;
+
+    const setOpen = open => {
+      wrapper.classList.toggle('is-enabled', open);
+      editor.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.textContent = open ? 'Hide note editor' : '+ Add optional note / disclaimer';
+    };
+
+    setOpen(wrapper.classList.contains('is-enabled'));
+    toggle.addEventListener('click', () => {
+      setOpen(!wrapper.classList.contains('is-enabled'));
+    });
+  });
+
   function syncRichFields() {
     document.querySelectorAll('.ab-admin-rich-field').forEach(wrapper => {
       const editor = wrapper.querySelector('[data-rich-field]');
