@@ -9,6 +9,25 @@ $why = get_post_meta( $id, 'abk_why', true );
 $when = get_post_meta( $id, 'abk_when_rows', true );
 $faqs = get_post_meta( $id, 'abk_faqs', true );
 $related = get_post_meta( $id, 'abk_related_links', true );
+$section_notes = array(
+    'direct' => get_post_meta( $id, 'abk_note_direct', true ),
+    'comparison' => get_post_meta( $id, 'abk_note_comparison', true ),
+    'why' => get_post_meta( $id, 'abk_note_why', true ),
+    'article_content' => get_post_meta( $id, 'abk_note_article_content', true ),
+    'when' => get_post_meta( $id, 'abk_note_when', true ),
+    'faqs' => get_post_meta( $id, 'abk_note_faqs', true ),
+    'related' => get_post_meta( $id, 'abk_note_related', true ),
+    'cta' => get_post_meta( $id, 'abk_note_cta', true ),
+);
+$has_section_note = array();
+foreach ( $section_notes as $note_key => $note_value ) {
+    $has_section_note[ $note_key ] = is_string( $note_value ) && '' !== trim( wp_strip_all_tags( $note_value ) );
+}
+$render_section_note = static function ( $note, $cta_context = false ) {
+    if ( ! is_string( $note ) || '' === trim( wp_strip_all_tags( $note ) ) ) { return; }
+    $class = $cta_context ? 'kh-section-note kh-section-note--cta' : 'kh-section-note';
+    echo '<aside class="' . esc_attr( $class ) . '" aria-label="Section note"><span class="kh-section-note-label">Note</span><div class="kh-section-note-copy">' . wpautop( wp_kses_post( $note ) ) . '</div></aside>';
+};
 if ( ! is_array( $comparison ) ) { $comparison = array(); }
 if ( ! is_array( $when ) ) { $when = array(); }
 if ( ! is_array( $faqs ) ) { $faqs = array(); }
@@ -36,13 +55,13 @@ $topic_terms = get_the_terms( $id, 'knowledge_topic' );
 $article_content = get_the_content();
 $has_article_content = trim( (string) $article_content ) !== '';
 $toc_items = array( array( 'direct-answer', $headings['direct'] ?: 'Direct answer' ) );
-if ( $comparison ) { $toc_items[] = array( 'comparison', $headings['comparison'] ?: 'Comparison' ); }
-if ( $why ) { $toc_items[] = array( 'why-different', $headings['why'] ?: 'Material behaviour' ); }
-if ( $has_article_content ) { $toc_items[] = array( 'article-editor-content', 'Article content' ); }
-if ( $when ) { $toc_items[] = array( 'when-to-consider', $headings['when'] ?: 'Selection guidance' ); }
-if ( $faqs ) { $toc_items[] = array( 'article-faqs', $headings['faqs'] ?: 'FAQs' ); }
-if ( $related ) { $toc_items[] = array( 'related-links', $headings['related'] ?: 'Related materials' ); }
-if ( $cta_kicker || $cta_title || $cta_text || ( $cta_url && $cta_label ) ) { $toc_items[] = array( 'material-enquiry', $cta_title ?: 'Contact our team' ); }
+if ( $comparison || $has_section_note['comparison'] ) { $toc_items[] = array( 'comparison', $headings['comparison'] ?: 'Comparison' ); }
+if ( $why || $has_section_note['why'] ) { $toc_items[] = array( 'why-different', $headings['why'] ?: 'Material behaviour' ); }
+if ( $has_article_content || $has_section_note['article_content'] ) { $toc_items[] = array( 'article-editor-content', 'Article content' ); }
+if ( $when || $has_section_note['when'] ) { $toc_items[] = array( 'when-to-consider', $headings['when'] ?: 'Selection guidance' ); }
+if ( $faqs || $has_section_note['faqs'] ) { $toc_items[] = array( 'article-faqs', $headings['faqs'] ?: 'FAQs' ); }
+if ( $related || $has_section_note['related'] ) { $toc_items[] = array( 'related-links', $headings['related'] ?: 'Related materials' ); }
+if ( $cta_kicker || $cta_title || $cta_text || ( $cta_url && $cta_label ) || $has_section_note['cta'] ) { $toc_items[] = array( 'material-enquiry', $cta_title ?: 'Contact our team' ); }
 ?>
 <main id="kh-main" class="kh-main kh-article-main">
   <div class="kh-shell kh-breadcrumb"><a href="<?php echo esc_url( get_post_type_archive_link( 'knowledge' ) ); ?>">Knowledge Center</a><span aria-hidden="true">/</span><span><?php the_title(); ?></span></div>
@@ -58,14 +77,20 @@ if ( $cta_kicker || $cta_title || $cta_text || ( $cta_url && $cta_label ) ) { $t
   <div class="kh-shell kh-article-layout">
     <aside class="kh-toc"><strong>On this page</strong><?php foreach ( $toc_items as $toc_item ) : ?><a href="#<?php echo esc_attr( $toc_item[0] ); ?>"><?php echo esc_html( $toc_item[1] ); ?></a><?php endforeach; ?></aside>
     <article class="kh-article-content">
-      <section id="direct-answer" class="kh-content-section kh-direct-answer"><?php if ( $headings['direct'] ) : ?><h2><?php echo esc_html( $headings['direct'] ); ?></h2><?php endif; ?><div class="kh-direct-copy"><?php echo $direct ? wpautop( wp_kses_post( $direct ) ) : '<p>This guide answers the central material question and gives practical selection context.</p>'; ?></div></section>
-      <?php if ( $comparison ) : ?><section id="comparison" class="kh-content-section"><?php if ( $headings['comparison'] ) : ?><h2><?php echo esc_html( $headings['comparison'] ); ?></h2><?php endif; ?><div class="kh-table-wrap"><table class="kh-comparison"><thead><tr><th scope="col"><?php echo esc_html( $comparison_headers['material'] ); ?></th><th scope="col"><?php echo esc_html( $comparison_headers['best_for'] ); ?></th><th scope="col"><?php echo esc_html( $comparison_headers['consideration'] ); ?></th></tr></thead><tbody><?php foreach ( $comparison as $row ) : ?><tr><th scope="row" data-label="<?php echo esc_attr( $comparison_headers['material'] ); ?>"><?php echo esc_html( isset( $row['material'] ) ? $row['material'] : '' ); ?></th><td data-label="<?php echo esc_attr( $comparison_headers['best_for'] ); ?>"><?php echo esc_html( isset( $row['best_for'] ) ? $row['best_for'] : '' ); ?></td><td data-label="<?php echo esc_attr( $comparison_headers['consideration'] ); ?>"><?php echo esc_html( isset( $row['consideration'] ) ? $row['consideration'] : '' ); ?></td></tr><?php endforeach; ?></tbody></table></div></section><?php endif; ?>
-      <?php if ( $why ) : ?><section id="why-different" class="kh-content-section"><?php if ( $headings['why'] ) : ?><h2><?php echo esc_html( $headings['why'] ); ?></h2><?php endif; ?><div class="kh-prose"><?php echo wpautop( wp_kses_post( $why ) ); ?></div></section><?php endif; ?>
-      <?php if ( $has_article_content ) : ?><div id="article-editor-content" class="kh-editor-content"><?php the_content(); ?></div><?php endif; ?>
-      <?php if ( $when ) : ?><section id="when-to-consider" class="kh-content-section"><?php if ( $headings['when'] ) : ?><h2><?php echo esc_html( $headings['when'] ); ?></h2><?php endif; ?><div class="kh-consider-grid"><?php foreach ( $when as $row ) : ?><article class="kh-consider-card"><h3><?php echo esc_html( isset( $row['material'] ) ? $row['material'] : '' ); ?></h3><div><?php echo wpautop( wp_kses_post( isset( $row['detail'] ) ? $row['detail'] : '' ) ); ?></div></article><?php endforeach; ?></div></section><?php endif; ?>
-      <?php if ( $faqs ) : ?><section id="article-faqs" class="kh-content-section"><?php if ( $headings['faqs'] ) : ?><h2><?php echo esc_html( $headings['faqs'] ); ?></h2><?php endif; ?><div class="kh-faq-list"><?php foreach ( $faqs as $faq ) : if ( empty( $faq['question'] ) || empty( $faq['answer'] ) ) { continue; } ?><details><summary><?php echo esc_html( $faq['question'] ); ?></summary><div class="kh-faq-answer"><?php echo wpautop( wp_kses_post( $faq['answer'] ) ); ?></div></details><?php endforeach; ?></div></section><?php endif; ?>
-      <?php if ( $related ) : ?><section id="related-links" class="kh-content-section"><?php if ( $headings['related'] ) : ?><h2><?php echo esc_html( $headings['related'] ); ?></h2><?php endif; ?><div class="kh-related-grid"><?php foreach ( $related as $row ) : $url = ab_content_url( isset( $row['url'] ) ? $row['url'] : '' ); if ( empty( $row['label'] ) || ! $url ) { continue; } ?><a class="kh-related-card" href="<?php echo esc_url( $url ); ?>"><span><?php echo esc_html( $row['label'] ); ?></span><span aria-hidden="true">→</span></a><?php endforeach; ?></div></section><?php endif; ?>
-      <?php if ( $cta_kicker || $cta_title || $cta_text || ( $cta_url && $cta_label ) ) : ?><section id="material-enquiry" class="kh-enquiry"><div class="kh-enquiry-copy"><?php if ( $cta_kicker ) : ?><p class="kh-enquiry-kicker"><?php echo esc_html( $cta_kicker ); ?></p><?php endif; ?><?php if ( $cta_title ) : ?><h2><?php echo esc_html( $cta_title ); ?></h2><?php endif; ?><?php if ( $cta_text ) : ?><p><?php echo esc_html( $cta_text ); ?></p><?php endif; ?></div><?php if ( $cta_url && $cta_label ) : ?><a class="kh-button kh-enquiry-button" href="<?php echo esc_url( $cta_url ); ?>"><span><?php echo esc_html( $cta_label ); ?></span><span class="kh-cta-arrow" aria-hidden="true">↗</span></a><?php endif; ?></section><?php endif; ?>
+      <section id="direct-answer" class="kh-content-section kh-direct-answer"><?php if ( $headings['direct'] ) : ?><h2><?php echo esc_html( $headings['direct'] ); ?></h2><?php endif; ?><div class="kh-direct-copy"><?php echo $direct ? wpautop( wp_kses_post( $direct ) ) : '<p>This guide answers the central material question and gives practical selection context.</p>'; ?></div><?php $render_section_note( $section_notes['direct'] ); ?></section>
+      <?php if ( $comparison || $has_section_note['comparison'] ) : ?>
+      <section id="comparison" class="kh-content-section">
+        <?php if ( $headings['comparison'] ) : ?><h2><?php echo esc_html( $headings['comparison'] ); ?></h2><?php endif; ?>
+        <?php if ( $comparison ) : ?><div class="kh-table-wrap"><table class="kh-comparison"><thead><tr><th scope="col"><?php echo esc_html( $comparison_headers['material'] ); ?></th><th scope="col"><?php echo esc_html( $comparison_headers['best_for'] ); ?></th><th scope="col"><?php echo esc_html( $comparison_headers['consideration'] ); ?></th></tr></thead><tbody><?php foreach ( $comparison as $row ) : ?><tr><th scope="row" data-label="<?php echo esc_attr( $comparison_headers['material'] ); ?>"><?php echo esc_html( isset( $row['material'] ) ? $row['material'] : '' ); ?></th><td data-label="<?php echo esc_attr( $comparison_headers['best_for'] ); ?>"><?php echo esc_html( isset( $row['best_for'] ) ? $row['best_for'] : '' ); ?></td><td data-label="<?php echo esc_attr( $comparison_headers['consideration'] ); ?>"><?php echo esc_html( isset( $row['consideration'] ) ? $row['consideration'] : '' ); ?></td></tr><?php endforeach; ?></tbody></table></div><?php endif; ?>
+        <?php $render_section_note( $section_notes['comparison'] ); ?>
+      </section>
+    <?php endif; ?>
+      <?php if ( $why || $has_section_note['why'] ) : ?><section id="why-different" class="kh-content-section"><?php if ( $headings['why'] ) : ?><h2><?php echo esc_html( $headings['why'] ); ?></h2><?php endif; ?><?php if ( $why ) : ?><div class="kh-prose"><?php echo wpautop( wp_kses_post( $why ) ); ?></div><?php endif; ?><?php $render_section_note( $section_notes['why'] ); ?></section><?php endif; ?>
+      <?php if ( $has_article_content || $has_section_note['article_content'] ) : ?><div id="article-editor-content" class="kh-editor-content"><?php if ( $has_article_content ) : ?><?php the_content(); ?><?php endif; ?><?php $render_section_note( $section_notes['article_content'] ); ?></div><?php endif; ?>
+      <?php if ( $when || $has_section_note['when'] ) : ?><section id="when-to-consider" class="kh-content-section"><?php if ( $headings['when'] ) : ?><h2><?php echo esc_html( $headings['when'] ); ?></h2><?php endif; ?><?php if ( $when ) : ?><div class="kh-consider-grid"><?php foreach ( $when as $row ) : ?><article class="kh-consider-card"><h3><?php echo esc_html( isset( $row['material'] ) ? $row['material'] : '' ); ?></h3><div><?php echo wpautop( wp_kses_post( isset( $row['detail'] ) ? $row['detail'] : '' ) ); ?></div></article><?php endforeach; ?></div><?php endif; ?><?php $render_section_note( $section_notes['when'] ); ?></section><?php endif; ?>
+      <?php if ( $faqs || $has_section_note['faqs'] ) : ?><section id="article-faqs" class="kh-content-section"><?php if ( $headings['faqs'] ) : ?><h2><?php echo esc_html( $headings['faqs'] ); ?></h2><?php endif; ?><?php if ( $faqs ) : ?><div class="kh-faq-list"><?php foreach ( $faqs as $faq ) : if ( empty( $faq['question'] ) || empty( $faq['answer'] ) ) { continue; } ?><details><summary><?php echo esc_html( $faq['question'] ); ?></summary><div class="kh-faq-answer"><?php echo wpautop( wp_kses_post( $faq['answer'] ) ); ?></div></details><?php endforeach; ?></div><?php endif; ?><?php $render_section_note( $section_notes['faqs'] ); ?></section><?php endif; ?>
+      <?php if ( $related || $has_section_note['related'] ) : ?><section id="related-links" class="kh-content-section"><?php if ( $headings['related'] ) : ?><h2><?php echo esc_html( $headings['related'] ); ?></h2><?php endif; ?><?php if ( $related ) : ?><div class="kh-related-grid"><?php foreach ( $related as $row ) : $url = ab_content_url( isset( $row['url'] ) ? $row['url'] : '' ); if ( empty( $row['label'] ) || ! $url ) { continue; } ?><a class="kh-related-card" href="<?php echo esc_url( $url ); ?>"><span><?php echo esc_html( $row['label'] ); ?></span><span aria-hidden="true">→</span></a><?php endforeach; ?></div><?php endif; ?><?php $render_section_note( $section_notes['related'] ); ?></section><?php endif; ?>
+      <?php if ( $cta_kicker || $cta_title || $cta_text || ( $cta_url && $cta_label ) || $has_section_note['cta'] ) : ?><section id="material-enquiry" class="kh-enquiry"><div class="kh-enquiry-copy"><?php if ( $cta_kicker ) : ?><p class="kh-enquiry-kicker"><?php echo esc_html( $cta_kicker ); ?></p><?php endif; ?><?php if ( $cta_title ) : ?><h2><?php echo esc_html( $cta_title ); ?></h2><?php endif; ?><?php if ( $cta_text ) : ?><p><?php echo esc_html( $cta_text ); ?></p><?php endif; ?></div><?php if ( $cta_url && $cta_label ) : ?><a class="kh-button kh-enquiry-button" href="<?php echo esc_url( $cta_url ); ?>"><span><?php echo esc_html( $cta_label ); ?></span><span class="kh-cta-arrow" aria-hidden="true">↗</span></a><?php endif; ?><?php $render_section_note( $section_notes['cta'], true ); ?></section><?php endif; ?>
     </article>
   </div>
 </main>
