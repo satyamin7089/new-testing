@@ -2,7 +2,7 @@
 /** Abiroverseas — WordPress theme functions. */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-define( 'AB_THEME_VERSION', '1.4.0' );
+define( 'AB_THEME_VERSION', '1.4.2' );
 
 add_action( 'after_setup_theme', 'ab_theme_setup' );
 function ab_theme_setup() {
@@ -87,7 +87,14 @@ function ab_enqueue_assets() {
     // Load the declared brand font once so every template, including the shared header, uses the same real font instead of silently falling back.
     wp_enqueue_style( 'ab-reddit-sans', 'https://fonts.googleapis.com/css2?family=Reddit+Sans:wght@400;500;600;700;800&display=swap', array(), null );
     if ( $style ) { wp_enqueue_style( 'ab-page-layout', $base . '/assets/css/' . $style, array( 'ab-reddit-sans' ), $version ); }
-    wp_enqueue_style( 'ab-site-footer', $base . '/assets/css/site.css', $style ? array( 'ab-page-layout' ) : array( 'ab-reddit-sans' ), $version );
+    // One shared rhythm stylesheet keeps the first banner aligned across the supplied page templates.
+    $shared_banner_styles = array( 'home.css', 'about.css', 'products.css', 'material.css', 'contact.css' );
+    $use_shared_banner = in_array( $style, $shared_banner_styles, true );
+    if ( $use_shared_banner ) {
+        wp_enqueue_style( 'ab-page-banner-rhythm', $base . '/assets/css/page-banners.css', array( 'ab-page-layout' ), $version );
+    }
+    $footer_dependencies = $use_shared_banner ? array( 'ab-page-layout', 'ab-page-banner-rhythm' ) : ( $style ? array( 'ab-page-layout' ) : array( 'ab-reddit-sans' ) );
+    wp_enqueue_style( 'ab-site-footer', $base . '/assets/css/site.css', $footer_dependencies, $version );
     if ( $script ) { wp_enqueue_script( 'ab-page-interactions', $base . '/assets/js/' . $script, array(), $version, true ); }
     // One navigation controller serves the shared header on every page.
     wp_enqueue_script( 'ab-navigation', $base . '/assets/js/navigation.js', array(), $version, true );

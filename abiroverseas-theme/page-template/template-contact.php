@@ -19,7 +19,7 @@ if ( isset( $_GET['ab_enquiry'] ) && is_scalar( $_GET['ab_enquiry'] ) ) {
             <div class="ab-contact-hero-copy">
                 <span class="ab-eyebrow">Let’s talk materials · we’re here to help</span>
                 <h1 id="ab-contact-title">Contact <span>Abiroverseas</span>.</h1>
-                <p class="ab-contact-hero-lead">Have a material requirement or a question about supply? Tell us what your process needs and let’s start a clear, useful conversation.</p>
+                <p class="ab-contact-hero-lead">Have a material requirement or supply question? Share your application, processing method and specification so our team can review the brief and clarify the next step.</p>
                 <div class="ab-contact-hero-actions">
                     <a class="ab-btn" href="#quick-enquiry">SEND AN ENQUIRY <svg class="ab-icon" aria-hidden="true"><use href="#ab-icon-arrow" /></svg></a>
                     <a class="ab-btn ab-btn--light" href="mailto:info@abiroverseas.com">EMAIL OUR TEAM</a>

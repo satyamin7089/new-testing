@@ -16,13 +16,10 @@ get_header();
           <div class="ab-about-hero-copy ab-reveal is-visible">
             <span class="ab-eyebrow">Who We Are</span>
             <h1 id="about-title">Welcome to ABIR Overseas</h1>
-            <p class="lead">We are dedicated to delivering high-quality plastic raw materials while driving innovation and sustainability across the industry. With a strong presence in the USA, India, Japan, Middle East, South East Asia, Australia, and more, we have firmly established ourselves as a leader in the industry. Our commitment to quality assurance, sustainable solutions, and customer satisfaction sets us apart.</p>
+            <p class="lead">We work with buyers and processors across markets, focusing on quality-led plastic raw materials, practical documentation and material choices matched to the application and process.</p>
    <div class="ab-story-pills" style="margin-bottom:20px;">
             <span class="ab-story-pill" style="background-color:#FFFFFF">Requirements-first</span>
-            <span class="ab-story-pill" style="background-color:#FFFFFF">Grade-aware</span>
             <span class="ab-story-pill" style="background-color:#FFFFFF">Documentation led</span>
-            <span class="ab-story-pill" style="background-color:#FFFFFF">Process-fit</span>
-            <span class="ab-story-pill" style="background-color:#FFFFFF">Clear confirmation</span>
           </div>            
 <div class="ab-about-hero-actions">
               <a class="ab-btn" href="#quick-enquiry">Start a conversation
