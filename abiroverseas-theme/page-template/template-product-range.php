@@ -14,7 +14,7 @@ get_header();
             <div class="ab-products-hero-copy">
                 <span class="ab-eyebrow">A closer look at material options</span>
                 <h1 id="ab-range-hero-title">Find the right polymer for your process.</h1>
-                <p>Explore polymer families, common forms and processing routes. Share your application, target grade and supply requirements so suitable options can be reviewed against your specification.</p>
+                <p>Explore polymer families, common forms and processing routes. Share your application, target grade, end use and supply requirements so suitable options can be reviewed against your specification.</p>
                 <div class="ab-products-hero-proof"><span><i aria-hidden="true"></i> Material-first guidance</span><span><i aria-hidden="true"></i> Details verified before commitment</span></div>
             </div>
             <div class="ab-products-hero-art" role="img" aria-label="Close-up of polymer resin material">

@@ -2881,3 +2881,29 @@ input[type="submit"],
     box-shadow: 0 0 0 8px #f2f7f5, 0 8px 20px rgba(20,55,63,.08);
 }
 .ab-process-foot { color: #657984; }
+
+
+/* Home banner: natural copy flow, top-aligned gallery, consistent corner radius.
+   Existing gallery markup, slides, thumbnails and controls are intentionally unchanged. */
+.ab-home-slide--final { padding-top: clamp(48px, 4.5vw, 64px); padding-bottom: clamp(48px, 4.5vw, 64px); }
+.ab-home-slide--final .ab-hero-grid--gallery { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr); align-items:start; gap:clamp(28px,3.5vw,48px); }
+.ab-home-slide--final .ab-hero-copy { min-width:0; max-width:none; min-height:0; padding:0; }
+.ab-home-slide--final .ab-hero-copy > .ab-eyebrow { display:block; margin:0 0 12px; }
+.ab-home-slide--final .ab-hero-copy h1 { min-height:0; max-width:680px; margin:0 0 16px; font-size:clamp(38px,4.1vw,56px); line-height:1.08; letter-spacing:-.035em; text-wrap:balance; }
+.ab-home-slide--final .ab-hero-copy > p { max-width:55ch; min-height:0; margin:0; color:#536572; font-size:clamp(16px,1.25vw,17px); line-height:1.65; }
+.ab-home-slide--final .ab-hero-actions { margin-top:24px; gap:12px; }
+.ab-home-slide--final .ab-hero-art--rotating { min-height:450px; align-self:start; border-radius:28px; overflow:hidden; }
+@media (max-width:850px) {
+ .ab-home-slide--final { padding-top:38px; padding-bottom:38px; }
+ .ab-home-slide--final .ab-hero-grid--gallery { grid-template-columns:minmax(0,1fr); gap:24px; }
+ .ab-home-slide--final .ab-hero-copy { order:0; }
+ .ab-home-slide--final .ab-hero-art--rotating { order:1; min-height:clamp(350px,46vw,390px); }
+ .ab-home-slide--final .ab-hero-copy h1 { font-size:clamp(34px,6vw,46px); }
+}
+@media (max-width:600px) {
+ .ab-home-slide--final { padding-top:30px; padding-bottom:30px; }
+ .ab-home-slide--final .ab-hero-copy h1 { font-size:clamp(32px,8vw,42px); }
+ .ab-home-slide--final .ab-hero-actions { margin-top:22px; }
+ .ab-home-slide--final .ab-hero-art--rotating { min-height:clamp(270px,78vw,330px); border-radius:22px; }
+}
+

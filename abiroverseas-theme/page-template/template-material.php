@@ -15,7 +15,7 @@ get_header();
                         class="ab-eyebrow">Reprocessed
                         &amp; recycled · polyethylene</span>
                     <h1 id="hdpe-title">Reprocessed and Recycled HDPE Materials</h1>
-                    <p>Explore reprocessed and recycled HDPE in granule, powder or compound forms. Share your application, processing method, target grade, quantity and documentation needs for review.</p>
+                    <p>Explore reprocessed and recycled HDPE in granule, powder or compound forms. Share your application, processing method, target grade, quantity and documentation needs for a thorough review.</p>
                     <div class="ab-prod-actions"><a class="ab-btn" href="#primary-enquiry">REQUEST AN HDPE QUOTE <svg
                                 class="ab-icon" aria-hidden="true">
                                 <use href="#ab-icon-arrow" />

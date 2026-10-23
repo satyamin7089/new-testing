@@ -16,8 +16,8 @@ get_header();
           <div class="ab-about-hero-copy ab-reveal is-visible">
             <span class="ab-eyebrow">Who We Are</span>
             <h1 id="about-title">Welcome to ABIR Overseas</h1>
-            <p class="lead">We work with buyers and processors across markets, focusing on quality-led plastic raw materials, practical documentation and material choices matched to the application and process.</p>
-   <div class="ab-story-pills" style="margin-bottom:20px;">
+            <p class="lead">We support buyers and processors with quality-led plastic raw materials, practical documentation and application-focused guidance, helping each requirement move toward a clear, well-defined supply brief.</p>
+   <div class="ab-story-pills">
             <span class="ab-story-pill" style="background-color:#FFFFFF">Requirements-first</span>
             <span class="ab-story-pill" style="background-color:#FFFFFF">Documentation led</span>
           </div>            
