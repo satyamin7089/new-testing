@@ -681,3 +681,12 @@ function ab_knowledge_article_url( $slug ) {
     $archive = get_post_type_archive_link( 'knowledge' );
     return $archive ? $archive : home_url( '/knowledge/' );
 }
+
+/** Show twelve Knowledge Center cards per page while preserving native pagination. */
+add_action( 'pre_get_posts', 'ab_knowledge_archive_page_size' );
+function ab_knowledge_archive_page_size( $query ) {
+    if ( is_admin() || ! $query->is_main_query() ) { return; }
+    if ( $query->is_post_type_archive( 'knowledge' ) || $query->is_tax( array( 'knowledge_hub', 'knowledge_material', 'knowledge_topic' ) ) ) {
+        $query->set( 'posts_per_page', 12 );
+    }
+}
