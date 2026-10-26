@@ -78,7 +78,10 @@
   }, true);
 
   nav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (event) => {
+      // A parent-link tap that was consumed to reveal its submenu must not
+      // also close the whole navigation panel.
+      if (event.defaultPrevented) return;
       if (mobileQuery.matches) closeMenu();
     });
   });
