@@ -658,3 +658,142 @@ body { margin: 0; }
     flex-basis: 43px;
   }
 }
+
+
+/* Tablet touch navigation fix: use the same tap-to-expand menu before the desktop
+   navigation becomes cramped, without changing the top contact bar layout. */
+@media (min-width: 851px) and (max-width: 1100px) {
+    .ab-nav-toggle {
+        display: flex;
+    }
+    .ab-nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        right: -21px;
+        left: -21px;
+        z-index: 110;
+        display: none;
+        max-height: calc(100vh - 95px);
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 0;
+        overflow-y: auto;
+        background: rgba(255,255,255,.98);
+        padding: 15px 21px 20px;
+        box-shadow: 0 18px 28px rgba(23,44,57,.12);
+    }
+    .ab-nav-links.is-open {
+        display: flex;
+    }
+    .ab-nav-menu {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+    .ab-nav-menu > li,
+    .ab-nav-menu > li > a {
+        width: 100%;
+    }
+    .ab-nav-menu > li > a {
+        padding: 12px 4px;
+        white-space: normal;
+        border-bottom: 1px solid #edf1f1;
+    }
+    .ab-nav-menu > li.menu-item-has-children {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 44px;
+        align-items: stretch;
+    }
+    .ab-nav-menu > li.menu-item-has-children > a {
+        display: flex;
+        width: 100%;
+        min-width: 0;
+        align-items: center;
+        padding: 12px 4px;
+    }
+    .ab-nav-menu > li.menu-item-has-children > a::after {
+        display: none;
+    }
+    .ab-nav-menu > li.ab-nav-quote {
+        position: static;
+        width: 100%;
+        margin-top: 13px;
+        transform: none;
+    }
+    .ab-nav-menu > li.ab-nav-quote > a {
+        display: flex;
+        width: 100%;
+        min-height: 48px;
+        padding: 12px 16px;
+    }
+    .ab-submenu-toggle {
+        display: inline-flex;
+        width: 40px;
+        min-height: 42px;
+        align-self: center;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: #008080;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .ab-submenu-toggle:hover,
+    .ab-submenu-toggle:focus-visible {
+        background: #eaf3f2;
+        outline: 2px solid rgba(0,128,128,.25);
+        outline-offset: -2px;
+    }
+    .ab-submenu-toggle::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        margin-top: -4px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg);
+        transition: transform .18s ease, margin .18s ease;
+    }
+    .ab-nav-menu li.is-submenu-open > .ab-submenu-toggle::before {
+        margin-top: 5px;
+        transform: rotate(225deg);
+    }
+    .ab-nav-menu .sub-menu,
+    .ab-nav-menu li:hover > .sub-menu,
+    .ab-nav-menu li:focus-within > .sub-menu {
+        position: static;
+        display: none;
+        grid-column: 1 / -1;
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        margin: 0;
+        padding: 5px 0 9px 13px;
+        border: 0;
+        border-radius: 0;
+        background: #f7faf9;
+        box-shadow: none;
+    }
+    .ab-nav-menu li.is-submenu-open > .sub-menu {
+        display: block;
+    }
+    .ab-nav-menu .sub-menu::before {
+        display: none;
+    }
+    .ab-nav-menu .sub-menu a {
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+    .ab-nav-menu .sub-menu .menu-item-has-children > a::after {
+        display: none;
+    }
+    .ab-nav-menu .sub-menu .menu-item-has-children {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 40px;
+        align-items: stretch;
+    }
+}
