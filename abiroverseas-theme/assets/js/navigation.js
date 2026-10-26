@@ -45,6 +45,18 @@
       item.classList.toggle('is-submenu-open', willOpen);
       button.setAttribute('aria-expanded', String(willOpen));
     });
+
+    // On touch/tablet layouts, the first tap on the parent label opens its
+    // submenu instead of navigating away. A second tap on that label follows
+    // the parent link; the dedicated arrow button always toggles the submenu.
+    link.addEventListener('click', (event) => {
+      if (!mobileQuery.matches || item.classList.contains('is-submenu-open')) return;
+      event.preventDefault();
+      event.stopPropagation();
+      closeSubmenus(item);
+      item.classList.add('is-submenu-open');
+      button.setAttribute('aria-expanded', 'true');
+    });
   });
 
   // Capture the click before theme/page handlers can swallow it. CSS also keeps
