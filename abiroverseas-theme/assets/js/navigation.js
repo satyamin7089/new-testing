@@ -4,7 +4,7 @@
   if (!nav || !toggle || toggle.dataset.navReady === 'true') return;
   toggle.dataset.navReady = 'true';
 
-  const mobileQuery = window.matchMedia('(max-width: 850px)');
+  const mobileQuery = window.matchMedia('(max-width: 1100px)');
   const closeSubmenus = (except = null) => {
     nav.querySelectorAll('li.is-submenu-open').forEach((item) => {
       if (item === except) return;
